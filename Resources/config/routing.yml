@@ -1,0 +1,3 @@
+htime_light_cms_test:
+    path:     /test
+    defaults: { _controller: HtimeLightCmsBundle:Test:index }
