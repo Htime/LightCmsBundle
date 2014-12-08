@@ -1,0 +1,52 @@
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Media:breadcrumbs.html.twig' with { 'current_active': 'list' } %}
+{% endblock %}
+
+{% block body %}
+
+	<h2>Liste des médias</h2>
+
+	<table style="width: 100%;">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Outils</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for media in medias %}
+			<tr>
+				<td align="center">{{ media.id }}</td>
+				<td align="center">{{ media.name }}</td>
+				<td align="center">
+					<div class="horizontal-menu">
+						<ul>
+							<li>
+								<a href="{{ path('htime_light_cms_media_display', { 'id' : media.id }) }}">
+									Voir
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('htime_light_cms_media_edit', { 'id' : media.id }) }}">
+									Edit
+								</a>
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			{% else %}
+			<tr>
+				<td colspan="3">Pas de média enregistré</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+
+	</table>
+
+{% endblock %}

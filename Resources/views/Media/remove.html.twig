@@ -1,0 +1,23 @@
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Media:breadcrumbs.html.twig' with { 'current_active': null } %}
+{% endblock %}
+
+{% block body %}
+
+	<h2>Supprimer un média</h2>
+
+	<p>
+		Êtes-vous certain de vouloir supprimer le média n° {{ media.id }} : "{{ media.name }}" ?
+	</p>
+
+	<form action="{{ path('htime_light_cms_media_remove', { 'id': media.id }) }}" method="post">
+		<a href="{{ path('htime_light_cms_media_display', { 'id': media.id }) }}">
+			[<] Retour au média
+		</a>
+		<input type="submit" value="Supprimer" />
+		{{ form_rest(form) }}
+	</form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{# Cette vue n'hérite de personne, elle sera incluse pas d'autres vues #}
+
+<h3>Formulaire de média</h3>
+
+{# Affichage du formulaire #}
+<div>
+	<form method="post" {{ form_enctype(form) }}>
+
+		{# Les erreurs générales du formulaire #}
+		{{ form_errors(form) }}
+
+		{{ form_row(form.name) }}
+
+		{{ form_rest(form)}}
+
+		<input type="submit" />
+	</form>
+</div>

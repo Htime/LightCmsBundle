@@ -1,9 +1,16 @@
 parameters:
     htime.light_cms_bundle.snippet_manager.class: Htime\LightCmsBundle\Manager\SnippetManager
+    htime.light_cms_bundle.media_manager.class: Htime\LightCmsBundle\Manager\MediaManager
 
 services:
     htime.light_cms_bundle.snippet_manager:
         class: %htime.light_cms_bundle.snippet_manager.class%
         arguments: [@doctrine.orm.entity_manager, @twig]
+        tags:
+            - { name: twig.extension }
+
+    htime.light_cms_bundle.media_manager:
+        class: %htime.light_cms_bundle.media_manager.class%
+        arguments: [@doctrine.orm.entity_manager]
         tags:
             - { name: twig.extension }

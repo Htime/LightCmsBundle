@@ -25,7 +25,8 @@ class SnippetManager extends \Twig_Extension
             'snippet' => new \Twig_Function_Method(
                 $this,
                 'renderSnippet',
-                array('is_safe' => array('html'))) // On précise que le HTML peut être interprété pour cette extension
+                array('is_safe' => array('html')) // On précise que le HTML peut être interprété pour cette extension
+            )
         );
     }
 

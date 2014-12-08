@@ -1,0 +1,44 @@
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Media:breadcrumbs.html.twig' with { 'current_active': null } %}
+{% endblock %}
+
+{% block body %}
+
+	<h2>Détails média n° {{ media.id }} </h2>
+
+	<ul>
+		<li>Nom : {{ media.name }}</li>
+		<li>Hash : {{ media.path }}</li>
+		<li>Last update : {{ media.lastUpdate|date('d/m/Y à h:m') }}</li>
+		<li>
+			<a href="{{ media(media.name) }}">
+				Voir le fichier associé
+			</a>
+		</li>
+	</ul>
+
+	<hr>
+	
+	<div class="horizontal-menu">
+		<ul>
+			<li>
+				<a href="{{ path('htime_light_cms_media_list') }}">
+					[<] Retour à la liste
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('htime_light_cms_media_edit', { 'id': media.id }) }}">
+					[e] Modifier le média
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('htime_light_cms_media_remove', { 'id': media.id }) }}">
+					[x] Supprimer le média
+				</a>
+			</li>
+		</ul>
+	</div>
+
+{% endblock %}

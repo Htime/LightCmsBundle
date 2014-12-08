@@ -13,6 +13,24 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
+    <header>
+        <div class="horizontal-menu">
+            <ul style="width: 20%; margin-left: 80%">
+                <li>
+                    <a href="{{ path('htime_light_cms_snippet_list') }}">
+                        Snippet
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('htime_light_cms_media_list') }}">
+                        Media
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
     <body>
 
         {% block breadcrumbs %}

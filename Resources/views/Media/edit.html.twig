@@ -1,0 +1,19 @@
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Media:breadcrumbs.html.twig' with { 'current_active': null } %}
+{% endblock %}
+
+{% block body %}
+	<h2>Modifier un média</h2>
+
+	<p>
+		Remplissez le formulaire pour modifier le média.
+	</p>
+
+	{% include "HtimeLightCmsBundle:Media:form.html.twig" %}
+
+	<a href="{{ path('htime_light_cms_media_display', { 'id': media.id }) }}">
+		[<] Retour au média
+	</a>
+{% endblock %}

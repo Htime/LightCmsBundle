@@ -4,19 +4,19 @@
         
         <h1>
             <p>
-                Fragments de code
+                Médias
             </p>
         </h1>
 
         <ul style="width: 20%; margin-left: 80%">
             <li {% if current_active == 'list' %}class="active"{% endif %}>
-                <a href="{{ path('htime_light_cms_snippet_list') }}">
+                <a href="{{ path('htime_light_cms_media_list') }}">
                     [l] Lister
                 </a>
             </li>
 
             <li {% if current_active == 'add' %}class="active"{% endif %}>
-                <a href="{{ path('htime_light_cms_snippet_add') }}">
+                <a href="{{ path('htime_light_cms_media_add') }}">
                     [+] Ajouter
                 </a>
             </li>
