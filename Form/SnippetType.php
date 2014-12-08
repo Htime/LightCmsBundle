@@ -16,7 +16,7 @@ class SnippetType extends AbstractType
     {
         $builder
             ->add('name',    'text')
-            ->add('content', 'textarea')
+            ->add('content', 'textarea', array('required' => false))
         ;
     }
     

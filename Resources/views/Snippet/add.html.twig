@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
 
 {% block breadcrumbs %}
 	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': 'add' } %}
@@ -7,14 +7,25 @@
 {% block body %}
 	<h2>Ajouter un fragment de code</h2>
 
-	{% include "HtimeLightCmsBundle:Snippet:form.html.twig" %}
-
 	<p>
 		Remplissez le formulaire pour ajouter un fragment de code.
 	</p>
 
-	<a href="{{ path('htime_light_cms_snippet_list') }}" class="btn btn-default">
-		<span class="glyphicon glyphicon-chevron-left"></span>
-		Retour à la liste des fragments de codes
+	{% include "HtimeLightCmsBundle:Snippet:form.html.twig" %}
+
+	<a href="{{ path('htime_light_cms_snippet_list') }}">
+		[<] Retour à la liste des fragments de codes
 	</a>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('/bundles/htimelightcms/plugins/edit_area/edit_area_full.js') }}"></script>
+	<script type="text/javascript">
+		editAreaLoader.init({
+			id:              "htime_light_cms_bundle_snippet_content",
+			syntax:          "html",
+			start_highlight: true
+		});
+	</script>
 {% endblock %}

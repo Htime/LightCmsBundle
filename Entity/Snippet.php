@@ -2,6 +2,7 @@
 
 namespace Htime\LightCmsBundle\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="htime_cms_snippet")
  * @ORM\Entity(repositoryClass="Htime\LightCmsBundle\Repository\SnippetRepository")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @UniqueEntity(fields="name", message="Another snippet has already this name.")
  */
 class Snippet
 {
@@ -32,7 +35,7 @@ class Snippet
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
 
@@ -43,6 +46,14 @@ class Snippet
      */
     private $lastUpdate;
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->lastUpdate = new \Datetime();
+    }
 
     /**
      * Get id

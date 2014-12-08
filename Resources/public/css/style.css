@@ -1,0 +1,18 @@
+/* Horizontal Menu */
+
+.horizontal-menu > ul {
+	list-style-type: none;
+}
+
+.horizontal-menu > ul > li {
+	margin-right: 15px;
+	display: inline;
+}
+
+.horizontal-menu > ul > li > a {
+	text-decoration: none;
+}
+
+.horizontal-menu > ul > li > a:hover {
+	color: blue;
+}

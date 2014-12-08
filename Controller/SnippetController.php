@@ -93,7 +93,7 @@ class SnippetController extends Controller
         		$em->flush();
 
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement créé');
+                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement créé.');
 
         		// Puis on redirige vers la page de description du fragment de code nouvellement créé
         		return $this->redirect( $this->generateUrl('htime_light_cms_snippet_display', array('id' => $snippet->getId())) );
@@ -135,7 +135,7 @@ class SnippetController extends Controller
                 $em->flush();
 
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement édité');
+                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement édité.');
 
                 // Puis on redirige vers la page de visualisation du fragment de code
                 return $this->redirect($this->generateUrl('htime_light_cms_snippet_display', array('id' => $snippet->getId()) ));
@@ -175,7 +175,7 @@ class SnippetController extends Controller
                 $em->flush();
 
                 // On définit un message flash
-                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement supprimé');
+                $this->get('session')->getFlashBag()->add('success', 'Le fragment de code "' . $snippet->getName() . '" a été correctement supprimé.');
 
                 // Puis on redirige vers la liste des fragments de code
                 return $this->redirect($this->generateUrl('htime_light_cms_snippet_list'));

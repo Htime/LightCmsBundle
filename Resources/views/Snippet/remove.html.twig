@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
 
 {% block breadcrumbs %}
 	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': null } %}
@@ -9,14 +9,14 @@
 	<h2>Supprimer un fragment de code</h2>
 
 	<p>
-		Êtes-vous certain de vouloir supprimer le fragment de code n° {{ snippet.id }} : {{ snippet.name }} ?
+		Êtes-vous certain de vouloir supprimer le fragment de code n° {{ snippet.id }} : "{{ snippet.name }}" ?
 	</p>
+
 	<form action="{{ path('htime_light_cms_snippet_remove', { 'id': snippet.id }) }}" method="post">
-		<a href="{{ path('htime_light_cms_snippet_display', { 'id': snippet.id }) }}" class="btn btn-default">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			Retour au fragment de code
+		<a href="{{ path('htime_light_cms_snippet_display', { 'id': snippet.id }) }}">
+			[<] Retour au fragment de code
 		</a>
-		<input type="submit" value="Supprimer" class="btn btn-danger" />
+		<input type="submit" value="Supprimer" />
 		{{ form_rest(form) }}
 	</form>
 

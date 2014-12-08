@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'HtimeLightCmsBundle::layout.html.twig' %}
 
 {% block breadcrumbs %}
 	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': null } %}
@@ -18,19 +18,24 @@
 
 	<hr>
 	
-	<p>
-		<a href="{{ path('htime_light_cms_snippet_list') }}" class="btn btn-default">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			Retour à la liste
-		</a>
-		<a href="{{ path('htime_light_cms_snippet_edit', { 'id': snippet.id }) }}" class="btn btn-default">
-			<span class="glyphicon glyphicon-edit"></span>
-			Modifier le fragment de code
-		</a>
-		<a href="{{ path('htime_light_cms_snippet_remove', { 'id': snippet.id }) }}" class="btn btn-danger">
-			<span class="glyphicon glyphicon-trash"></span>
-			Supprimer le fragment de code
-		</a>
-	</p>
+	<div class="horizontal-menu">
+		<ul>
+			<li>
+				<a href="{{ path('htime_light_cms_snippet_list') }}">
+					[<] Retour à la liste
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('htime_light_cms_snippet_edit', { 'id': snippet.id }) }}">
+					[e] Modifier le fragment de code
+				</a>
+			</li>
+			<li>
+				<a href="{{ path('htime_light_cms_snippet_remove', { 'id': snippet.id }) }}">
+					[x] Supprimer le fragment de code
+				</a>
+			</li>
+		</ul>
+	</div>
 
 {% endblock %}

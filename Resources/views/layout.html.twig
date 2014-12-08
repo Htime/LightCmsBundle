@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Htime Light CMS{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/htimelightcms/css/style.css') }}" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body>
+
+        {% block breadcrumbs %}
+        {% endblock %}
+
+        <!--== Body ==-->
+        <div>
+            {% for type in ['info', 'success', 'danger', 'warning'] %}
+                {% for message in app.session.flashbag.get(type) %}
+                <div>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endfor %}
+
+            {% block body %}
+            {% endblock %}
+        </div>
+        <!--== End Body ==-->
+
+        {% block javascripts %}
+        {% endblock %}
+
+    </body>
+</html>
