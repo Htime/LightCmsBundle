@@ -1,0 +1,29 @@
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <!--container-->
+    <div class="container">
+        <h1 class="pull-left">
+            <p class="text-primary">
+                Fragments de code
+            </p>
+        </h1>
+
+        <ul class="pull-right breadcrumb">
+
+            <li {% if current_active == 'list' %}class="active"{% endif %}>
+                <a href="{{ path('htime_light_cms_snippet_list') }}">
+                    Lister
+                </a>
+            </li>
+
+            <li {% if current_active == 'add' %}class="active"{% endif %}>
+                <a href="{{ path('htime_light_cms_snippet_add') }}">
+                    Ajouter
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!--/container-->
+</div>
+<!--=== End Breadcrumbs ===-->

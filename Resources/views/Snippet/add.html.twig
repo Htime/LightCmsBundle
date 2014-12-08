@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': 'add' } %}
+{% endblock %}
+
+{% block body %}
+	<h2>Ajouter un fragment de code</h2>
+
+	{% include "HtimeLightCmsBundle:Snippet:form.html.twig" %}
+
+	<p>
+		Remplissez le formulaire pour ajouter un fragment de code.
+	</p>
+
+	<a href="{{ path('htime_light_cms_snippet_list') }}" class="btn btn-default">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+		Retour à la liste des fragments de codes
+	</a>
+{% endblock %}

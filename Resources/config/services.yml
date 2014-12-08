@@ -1,4 +1,9 @@
+parameters:
+    htime.light_cms_bundle.snippet_manager.class: Htime\LightCmsBundle\Manager\SnippetManager
+
 services:
-#    htime_light_cms.example:
-#        class: Htime\LightCmsBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    htime.light_cms_bundle.snippet_manager:
+        class: %htime.light_cms_bundle.snippet_manager.class%
+        arguments: [@doctrine.orm.entity_manager, @twig]
+        tags:
+            - { name: twig.extension }

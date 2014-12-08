@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': 'list' } %}
+{% endblock %}
+
+{% block body %}
+
+	<h2>Liste des fragments de code</h2>
+
+	<table class="table table-condensed table-hover">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Outils</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for snippet in snippets %}
+			<tr>
+				<td>{{ snippet.id }}</td>
+				<td>{{ snippet.name }}</td>
+				<td>
+					<a href="{{ path('htime_light_cms_snippet_display', { 'id' : snippet.id }) }}" class="btn btn-xs btn-primary">
+						<span class="glyphicon glyphicon-eye-open"></span>
+					</a>
+					<a href="{{ path('htime_light_cms_snippet_edit', { 'id' : snippet.id }) }}" class="btn btn-xs btn-primary">
+						<span class="glyphicon glyphicon-edit"></span>
+					</a>
+				</td>
+			</tr>
+			{% else %}
+			<tr>
+				<td colspan="3">Pas de fragment de code enregistré</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+
+	</table>
+
+{% endblock %}

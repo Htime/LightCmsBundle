@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block breadcrumbs %}
+	{% include 'HtimeLightCmsBundle:Snippet:breadcrumbs.html.twig' with { 'current_active': null } %}
+{% endblock %}
+
+{% block body %}
+	<h2>Modifier un fragment de code</h2>
+
+	{% include "HtimeLightCmsBundle:Snippet:form.html.twig" %}
+
+	<p>
+		Remplissez le formulaire pour modifier le fragment de code.
+	</p>
+
+	<a href="{{ path('htime_light_cms_snippet_display', { 'id': snippet.id }) }}" class="btn btn-default">
+		<span class="glyphicon glyphicon-chevron-left"></span>
+		Retour au fragment de code
+	</a>
+{% endblock %}
