@@ -41,13 +41,17 @@ class SnippetManager extends \Twig_Extension
         $snippet = $this->em->getRepository('HtimeLightCmsBundle:Snippet')->findOneByName($snippetName);
 
         if ($snippet == null) {
-            throw $this->createNotFoundException('Fragment de code[id=' . $id . '] inexistant.');
+
+            // Si le fragment de code n'existe pas, on renvoit null pour éviter une erreur et faire en sorte que la page se charge quand même
+            return null;
+            
+        } else {
+
+            // On indique à Twig qu'il doit interpréter du code en provenance d'une chaîne de caractères
+            $this->twigEnvironment->setLoader(new \Twig_Loader_String());
+
+            // On renvoie le contenu du snippet interprété en Twig
+            return $this->twigEnvironment->render($snippet->getContent());
         }
-
-        // On indique à Twig qu'il doit interpréter du code en provenance d'une chaîne de caractères
-        $this->twigEnvironment->setLoader(new \Twig_Loader_String());
-
-        // On renvoie le contenu du snippet interprété en Twig
-        return $this->twigEnvironment->render($snippet->getContent());
     }
 }

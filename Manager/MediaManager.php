@@ -38,9 +38,12 @@ class MediaManager extends \Twig_Extension
         $media = $this->em->getRepository('HtimeLightCmsBundle:Media')->findOneByName($mediaName);
 
         if ($media == null) {
-            // Si le média est introuvable, on retourne une page qui n'existe pas et qui déclenche une erreur 404
-            return '/erreur';
+
+            // Si le média n'existe pas, on renvoit null pour éviter une erreur et faire en sorte que la page se charge quand même
+            return null;
+
         } else {
+            
             // Sinon, on renvoie le lien vers le fichier
             return '/' . Media::getWebDir() . '/' . $media->getPath();
         }

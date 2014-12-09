@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Htime\LightCmsBundle\Entity\Media;
 use Htime\LightCmsBundle\Form\MediaType;
 
@@ -20,7 +20,7 @@ class MediaController extends Controller
     /**
      * Liste tous les médias.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/list", name="htime_light_cms_media_list")
      * @Template("HtimeLightCmsBundle:Media:list.html.twig")
@@ -39,7 +39,7 @@ class MediaController extends Controller
     /**
      * Affiche un média en détails.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/display/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_media_display")
      * @Template("HtimeLightCmsBundle:Media:display.html.twig")
@@ -62,14 +62,16 @@ class MediaController extends Controller
     /**
      * Ajoute un nouveau média.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
-     * @Route("/add", name="htime_light_cms_media_add")
+     * @Route("/add/{name}", requirements={"name" = "\w*"}, name="htime_light_cms_media_add")
      * @Template("HtimeLightCmsBundle:Media:add.html.twig")
      */
-    public function addAction()
+    public function addAction($name = null)
     {
-        $media = new media;
+        $media = new Media;
+
+        $media->setName($name);
 
         // On créé le formulaire
         $form = $this->createForm(new MediaType, $media);
@@ -109,7 +111,7 @@ class MediaController extends Controller
     /**
      * Modifie un média déjà existant.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/edit/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_media_edit")
      * @ParamConverter("media", class="HtimeLightCmsBundle:Media", options={"id" = "id"})
@@ -151,7 +153,7 @@ class MediaController extends Controller
     /**
      * Supprime un média.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/remove/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_media_remove")
      * @ParamConverter("media", class="HtimeLightCmsBundle:Media", options={"id" = "id"})

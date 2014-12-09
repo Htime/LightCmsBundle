@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use JMS\SecurityExtraBundle\Annotation\PreAuthorize;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Htime\LightCmsBundle\Entity\Snippet;
 use Htime\LightCmsBundle\Form\SnippetType;
 
@@ -20,7 +20,7 @@ class SnippetController extends Controller
     /**
      * Liste tous les fragments de code.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/list", name="htime_light_cms_snippet_list")
      * @Template("HtimeLightCmsBundle:Snippet:list.html.twig")
@@ -39,7 +39,7 @@ class SnippetController extends Controller
     /**
      * Affiche un fragment de code en détails.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/display/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_snippet_display")
      * @Template("HtimeLightCmsBundle:Snippet:display.html.twig")
@@ -62,14 +62,16 @@ class SnippetController extends Controller
     /**
      * Ajoute un nouveau fragment de code.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
-     * @Route("/add", name="htime_light_cms_snippet_add")
+     * @Route("/add/{name}", requirements={"name" = "\w*"}, name="htime_light_cms_snippet_add")
      * @Template("HtimeLightCmsBundle:Snippet:add.html.twig")
      */
-    public function addAction()
+    public function addAction($name = null)
     {
-        $snippet = new snippet;
+        $snippet = new Snippet;
+
+        $snippet->setName($name);
 
         // On créé le formulaire
         $form = $this->createForm(new SnippetType, $snippet);
@@ -109,7 +111,7 @@ class SnippetController extends Controller
     /**
      * Modifie un fragment de code déjà existant.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/edit/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_snippet_edit")
      * @ParamConverter("snippet", class="HtimeLightCmsBundle:Snippet", options={"id" = "id"})
@@ -151,7 +153,7 @@ class SnippetController extends Controller
     /**
      * Supprime un fragment de code.
      *
-     * PreAuthorize("hasRole('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_LIGHT_CMS_ADMIN')")
      *
      * @Route("/remove/{id}", requirements={"id" = "\d+"}, name="htime_light_cms_snippet_remove")
      * @ParamConverter("snippet", class="HtimeLightCmsBundle:Snippet", options={"id" = "id"})
