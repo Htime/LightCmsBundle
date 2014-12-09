@@ -42,16 +42,25 @@ class SnippetManager extends \Twig_Extension
 
         if ($snippet == null) {
 
-            // Si le fragment de code n'existe pas, on renvoit null pour éviter une erreur et faire en sorte que la page se charge quand même
+            // Si le fragment de code n'existe pas, on renvoie null pour éviter une erreur et faire en sorte que la page se charge quand même
             return null;
             
         } else {
 
-            // On indique à Twig qu'il doit interpréter du code en provenance d'une chaîne de caractères
+            // On enregistre le 'loader' actuel dans une variable
+            $loader = $this->twigEnvironment->getLoader();
+
+            // On indique à Twig qu'il doit interpréter du code en provenance d'une chaîne de caractères en chargeant le bon 'loader'
             $this->twigEnvironment->setLoader(new \Twig_Loader_String());
 
-            // On renvoie le contenu du snippet interprété en Twig
-            return $this->twigEnvironment->render($snippet->getContent());
+            // On interprète le code contenu dans le 'snippet'
+            $response = $this->twigEnvironment->render($snippet->getContent());
+
+            // On remet le loader de fichiers que l'on a enregistré
+            $this->twigEnvironment->setLoader($loader);
+
+            // On renvoie finalement la réponse
+            return $response;
         }
     }
 }

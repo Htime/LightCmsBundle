@@ -150,32 +150,19 @@ class Media
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir(). '/' . $this->path;
+            : self::getWebDir(). '/' . $this->path;
     }
 
     public function getWebPath()
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir() . '/' . $this->path;
+            : self::getWebDir() . '/' . $this->path;
     }
 
     /**
      * Retourne le chemin relatif vers le fichier pour le code PHP.
      */
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/' . $this->getUploadDir();
-    }
-
-    /**
-     * Retourne le chemin relatif vers le fichier pour un navigateur
-     */
-    protected function getUploadDir()
-    {
-        return 'uploads/media';
-    }
-
     public static function getWebDir()
     {
         return 'uploads/media';
@@ -252,12 +239,12 @@ class Media
         }
 
         // On déplace le fichier envoyé dans le bon répertoire
-        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+        $this->getFile()->move(self::getWebDir(), $this->path);
 
         // Si on avait un ancien fichier, on le supprime
         if (isset($this->tempFileName)) {
 
-            $oldFile = $this->getUploadRootDir(). '/' . $this->tempFileName;
+            $oldFile = self::getWebDir(). '/' . $this->tempFileName;
 
             if (file_exists($oldFile)) {
                 unlink($oldFile);
