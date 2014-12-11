@@ -16,7 +16,7 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('file', 'file')
+            ->add('file', 'file', array('required' => false))
         ;
     }
     

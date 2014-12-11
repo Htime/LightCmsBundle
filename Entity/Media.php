@@ -49,7 +49,7 @@ class Media
     private $lastUpdate;
 
     /**
-     * @Assert\File(maxSize="6000000", maxSizeMessage="Maximum file size is 6 Mo.")
+     * @Assert\File(maxSize="15000000", maxSizeMessage="Maximum file size is 15 Mo.")
      */
     private $file;
 
